@@ -1,6 +1,6 @@
 <p align=center><img src=https://neurona-ba.com/wp-content/uploads/2021/07/HenryLogo.jpg><p>
 
-# <h1 align=center> **PROYECTO INDIVIDUAL MACHINE LEARNING OPERATIONS (MLOPS)** </h1>
+# <h1 align=center> **INDIVIDUAL PROJECT: MACHINE LEARNING OPERATIONS (MLOPS)** </h1>
 
 # <h1 align=center>**`Machine Learning Operations (MLOps)`**</h1>
 
@@ -14,174 +14,167 @@
 <img src="https://user-images.githubusercontent.com/67664604/217914153-1eb00e25-ac08-4dfa-aaf8-53c09038f082.png"  height=300>
 </p>
 
-# JOAQUIN MILLAN LANHOZO - AGOSTO 2023 - DTPT02
+# JOAQUIN MILLAN LANHOZO - AUGUST 2023 - DTPT02
 
-## SOY HENRY
+## SOY HENRY - BOOTCAMP
 
-El trabajo aquí expuesto fue realizado durante la cursada en la institución Soy Henry, formo parte de la cohorte DATAPT02 y este es el primer proyecto integrador enfocado en Machine Learning Operations
+The work presented here was carried out during my time at the Soy Henry institution. I am part of the DATAPT02 group, and this is the first integrated project focused on Machine Learning Operations.
 <hr>  
 
 
-## Tabla de contenidos
-- [Archivos en el Repositorio](#archivos-en-el-repositorio)
-- [Contexto](#contexto)
-- [Proyecto](#proyecto)
+## Table of contents
+- [Files in repository](#files-in-repository)
+- [Context](#context)
+- [Project](#project)
 - [Deployment](#deployment)
-- [Fuentes de datos](#fuente-de-datos)
-- [Video deploy](#video-deploy)
-- [Stack tecnologico](#stack-tecnologico)
+- [Data Soucers](#data-sources)
+- [Deploy video](#deploy-video)
+- [Technology Stack](#technology-stack)
 
 <hr> 
 
-## ARCHIVOS EN EL REPOSITORIO
+## FILES IN REPOSITORY
 
 <hr> 
 
-+ Carpeta "env" --> Tiene el entorno virtual generado para este proyecto.
-+ "duracion_peliculas.csv" --> Archivo especifico generado para la consulta de la función "peliculas_duracion"
-+ "peliculas_paises.csv" --> Csv generado para la función de "peliculas_pais"
-+ "productoras_exitosas.csv" --> Sub dataset confeccionado para la consulta de la función de "productoras_exitosas"
-+ countries_counts.csv --> Este csv cuenta con información del conteo de las películas realizadas por los países. Función "peliculas_pais"
-+ "directores.csv" --> Dataframe exportado a csv realizado para la función de "get_director"
-+ "franquicias.csv" --> Csv elaborado con la información necesaria para la función "franquicia"
-+ "main.py" --> Archivo en donde corren las funciones y por donde realice el deploy a FastApi y disponibilizandolo luego por Render.
-+ "merge_franquicias.csv" --> Csv elaborado con la información necesaria para la función "franquicia"
-+ "productoras_exitosas_df.csv" --> Sub dataset confeccionado para la consulta de la función de "productoras_exitosas"
-+ "requirements.txt" --> Archivo con las librerías utilizadas y sus versiones.
++ Folder "env" --> It contains the virtual environment generated for this project.
++ "Duration_of_movies.csv" --> A specific file generated for the "movies_duration" function query.
++ "countries_with_movies.csv" --> A CSV file generated for the "movies_languages" function.
++ "Succesful_companies.csv" --> A sub-dataset created for the "succesful_companies" function query. 
++ "countries_with_movies.csv" --> This CSV contains information about the count of movies produced by countries. Used in the "movie_country" function. 
++ "directors.csv" --> A DataFrame exported to CSV created for the "get_director" function.
++ "franchises.csv" --> A CSV file elaborated with the necessary information for the "franchises_function" function.
++ "main.py" --> File where the functions run and where I deployed it to FastAPI, making it available through Render.
++ "merge_franquicias.csv" --> A CSV file created with the necessary information for the "franquicia" function.
++ "movies_language.csv" --> A sub-dataset created for the "movies_languages" function query. 
++ "requirements.txt" --> A file with the libraries used and their versions.
++ "model.csv" --> A file filtered used for modelling the recommendations
 
-[Tabla de Contenidos](#tabla-de-contenidos)
-
-
-
-
-## Contexto
-
-Para este proyecto, simulamos ser Data Scientist para una start-up en la industria del Streaming. La start-up aun no cuenta con una plataforma desarrollada para poder obtener información respecto de las películas con las que cuenta la empresa. 
-
-A lo largo del proyecto, se realizaran tareas de ETL (Extraccion, Transformación y Carga de datos) se extraerá información de los datasets propuestos, se realizaran algunas transformaciones a algunas columnas para poder tener dataframes más robustos y completos para poder realizar el EDA (Análisis Exploratorio de Datos) que es un análisis de los datos para poder obtener información útil.
-
-Luego, realizaremos un modelo de machine learning para poder dar recomendaciones de películas y finalmente, el desarrollo de una aplicación para poder disponibilizar esos datos para que los usuarios puedan consumirlos.
-
-[Tabla de Contenidos](#tabla-de-contenidos)
-
-## Proyecto
-
-+ Como primer paso, realizamos la lectura de los datasets propuestos, son dos datasets: uno de "movies", con información de las películas y otro de "credits" con información del elenco que realizaron las películas. Los datasets originalmente cuentan con 45466 películas
-
-+ Transformaciones:  La data que contenían los datasets no son perfectos, es por eso que se realizan transformaciones para poder utilizar esa data. Algunas columnas fueron transformadas, ya que contenían datos con formatos no adecuados y también datos agrupados, que había que desanidar para poder disponibilizar el dato que contenían esas columnas. También se eliminaron columnas inútiles, que no serán consideradas para el propósito de este proyecto.
-
-+ ** Tratamientos de valores faltantes**: Hay algunos valores nulos a los cuales se realizó un tratamiento de caso que se haya considerado necesario
+[Table of contents](#table-of-contents)
 
 
-## Creacion de Funciones
-  Se crearon dataframes específicos y más concretos para eficientizar y acotar el uso de las siguientes funciones. Estas funciones servirán para poder consultar información de las películas.
 
 
-+ **peliculas_idioma( *`Idioma`: str* )**:
-    Función en la cual se ingresa un idioma y retorna la cantidad de películas producidas en ese idioma.
+## Context
 
-Ejemplo de retorno: *`X` cantidad de películas fueron estrenadas en `idioma`*
+For this project, I simulated being a Data Scientists for a startup in the Streaming industry. The startup does not yet have a developed platform to obtain information about the movies it has in its catalog.
+
+Throughout the project, I performed ETL (Extraction, Transformation, and Loading of data) tasks. Extract information from the provided datasets, made some transformations to certain columns to have more robust and complete dataframes for then making Exploratory Data Analysis (EDA). EDA involves analyzing the data to obtain useful insights.
+
+Next, I build a machine learning model to provide movie recommendations. Finally, I developed an application with FASTAPI to deploy this data available to users so they can consume it.
+
+[Table of contents](#table-of-contents)
+
+## Project
+
++ As a first step, I looked at the provided datasets, which consist of two datasets: one for "movies," containing information about the movies, and another for "credits," containing information about the cast who worked on the movies. The original datasets included 45,466 movies.
+
++ Transformations: The data within these datasets were not perfect, which is why we carried out transformations to make this data usable. Some columns were transformed because they contained data in inappropriate formats and also nested data that needed to be unraveled to make the information in those columns accessible. Additionally, we removed irrelevant columns that will not be considered for the purpose of this project.
+
++ ** Handling Missing Values**: Some missing values were treated as needed to ensure data quality.
+
+
+## Creation of functions
+  Specific and more focused dataframes were developed, filtering the information required, to optimize the use of the following functions. These functions will be used to query information about the movies.
+
++ **movies_languages( *`language`: str* )**:
+    This function takes an input language and returns the number of movies produced in that language. 
+    
+Example: "*`X` number of movies were released in {certain} `language`."
          
 
-+ **peliculas_duracion( *`Pelicula`: str* )**:
-    Función a la cual se le ingresa una pelicula y devuelve la duración y el año de estreno.
-
-Ejemplo de retorno: *`X` . Duración: `x`. Año: `xx`*
-
-+ **franquicia( *`Franquicia`: str* )**:
-    Esta función recibe un input de la franquicia, y retorna la cantidad de peliculas, ganancia total de la franquicia y el promedio de ganancias
++ **movies_duration( *`Movie`: str* )**:
+    When given a movie title as input, this function returns the duration and release year of the movie. 
     
-Ejemplo de retorno: *La franquicia `X` posee `X` peliculas, una ganancia total de `x` y una ganancia promedio de `xx`*
+Example: "Movie: *`X`. Duration: `x`. Year: `xx`."
 
-+ **peliculas_pais( *`Pais`: str* )**:
-    La función al ingresarle un país , devuelva la cantidad de peliculas que fueron producidas en el mismo.
++ **franchises_function( *`Franchise`: str* )**:
+    This function receives the name of a franchise as input and returns the number of movies in the franchise, the total revenue of the franchise, and the average revenue. 
     
-Ejemplo de retorno: *Se produjeron `X` películas en el país `X`*
+Example: "The `X` franchise has `X` movies, a total revenue of `x`, and an average revenue of `xx`."
 
-+ **productoras_exitosas( *`Productora`: str* )**:
-    Esta función recibe el nombre de una productora, y entrega la ganancia total y la cantidad de peliculas que realizó. 
++ **movies_language( *`Country`: str* )**:
+    This function returns the number of movies produced in the country given as an input. 
+
+Example: "`X` movies were produced in country `X`."
+
++ **succesful_companies( *`Production_company`: str* )**:
+    This function takes the name of a production company as an input and provides the total revenue and the number of movies produced by that company. 
     
-Ejemplo de retorno: *La productora `X` ha tenido un revenue de `x`*
+Example: *"Production company `X` has had a revenue of `x`."*
 
-+ **get_director( *`nombre_director`* )**:
-    Al ingresar en esta función el nombre de un director que se encuentre en el dataset devuelve el éxito del mismo medido a través del retorno. Además, devuelve el nombre de cada película dirigida con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma.
++ **get_director( *`director_name`* )**:
+    When you input the name of a director found in the dataset, this function returns the director's success measured by their returns. It also provides the name of each movie directed by the director, along with its release date, individual return, cost, and revenue.
 
-+ **Sistema de recomendación**: 
-    A esta función, se ingresa el nombre de una película y recomienda 5 peliculas similares.
++ **Recommendation System**: 
 
-
-### EDA - Analisis Exploratorio de Datos
-
-Se realizo un análisis exhaustivo de los datos, en el cual podemos ver datos sobre los idiomas hablados en las películas, información respecto de los países productores, los lenguajes originales de las películas. Las compañías productoras, colecciones de películas, las fechas de estreno, los presupuestos, ganancias, puntajes y valoraciones, géneros, actores y directores. 
-
-El dataset acompaña y refleja muy bien, a lo que es la historia del cine. Hitos históricos, sociales y tecnológicas contribuyeron al desarrollo de la industria. 
-
-El 28 de diciembre de 1895, los hermanos Lumière proyectaron una serie de cortometrajes en París, lo que se considera una de las primeras proyecciones públicas de películas en movimiento. Esta fecha a menudo se toma como el comienzo oficial del cine.
-
-Luego, vino el Technicolor en las décadas de 1910 y 1920 lo que llevó al uso más generalizado y a la mejora en la calidad del color en el cine.
-
-Durante esos años posteriores, hasta la década del 1930, las películas eran en blanco y negro. A partir de la década del 30, acompañado de ciertos hitos las películas comenzaron a desarrollarse en mayor cantidad. Estos hitos fueron: El sonido y el habla (anteriormente sin sonido), nacimiento de los musicales, "estreno" de las estrellas de cine y glamour, expansión de géneros. Además del sonido, hubo avances técnicos en áreas como la cinematografía, la iluminación y la edición. Estos avances permitieron una mayor calidad visual y narrativa en las películas. Lo que resultó en una mayor popularidad, diversidad y sofisticación de las películas.
-
-Posterior le siguieron las películas animadas en los años 40. Snow White and the Seven Dwarfs (1937), esta película, producida por Walt Disney, es considerada la primera película animada en color y uno de los primeros largometrajes animados. Fue un gran hito en la historia de la animación.
-
-Luego en 1960, también se nota otra marcada tendencia del incremento de películas producidas. Esto se debe a ciertos factores:
-
-- Surgió lo que se conoció como el "Nuevo Hollywood", donde directores jóvenes y ambiciosos comenzaron a desafiar las convenciones y a explorar temas más oscuros y realistas.
-
-- A nivel global, surgieron movimientos cinematográficos influyentes, como la Nouvelle Vague en Francia y el Neorrealismo italiano. Estos movimientos buscaban formas frescas y auténticas de narrar historias en la pantalla.
-
--  A medida que las películas se volvían más accesibles y la globalización avanzaba, el cine de diferentes países y culturas ganó popularidad en todo el mundo.
-
-También hay otro crecimiento exponencial marcado en los años 80, ya que las innovaciones tecnológicas, como el uso de efectos especiales y el formato widescreen, permitieron nuevas posibilidades visuales en el cine. A finales de la década de 1970 y principios de la década de 1980, surgieron películas de gran presupuesto con un enfoque en el entretenimiento a gran escala. "Star Wars" (1977) y "Jaws" (1975) son ejemplos destacados de películas que dieron lugar al cine de blockbusters.
-
- A medida que las películas se volvían más accesibles y la globalización avanzaba, el cine de diferentes países y culturas ganó popularidad en todo el mundo.
+    This function accepts the name of a movie as input and provides recommendations for 5 similar movies. While it currently employs a KNN model, please note that a more effective recommendation model using TF-IDF and Cosine similarity is detailed in the .ipynb notebook (not included here due to deployment constraints that exceed the available resources).A esta función, se ingresa el nombre de una película y recomienda 5 peliculas similares.
 
 
- A partir de la década de 1990, sobre todo de los 2000 en adelante,  la tecnología digital comenzó a revolucionar la producción y distribución de películas. El auge de Internet también cambió la forma en que las películas se promocionaban y se distribuían.Acompañado a ello vino el apogeo de un monton de peliculas junto a avances tecnologicos y desarrollo exponencial de la industria cinematografica.
+### Exploratory Data Analysis (EDA)
 
- [Tabla de Contenidos](#tabla-de-contenidos)
+A comprehensive analysis of the data was conducted, revealing insights into various aspects of the movies dataset. This included information about the languages spoken in the films, details about countries producing those movies, the original languages of the movies, production companies, movie collections, release dates, budgets, profits, ratings, genres, actors, and directors.
+
+The dataset provides a rich reflection of the history of cinema, capturing significant milestones in both cultural and technological evolution.
+
+On December 28, 1895, the Lumière brothers conducted one of the earliest public screenings of moving pictures in Paris, marking the official beginning of cinema.
+
+The introduction of Technicolor in the 1910s and 1920s significantly improved color quality in films.
+In the decades leading up to the 1930s, movies were predominantly black and white. However, significant advancements like sound, the birth of musicals, the emergence of movie stars and glamour, and the expansion of genres ushered in a new era for cinema. Technical innovations in cinematography, lighting, and editing also enhanced the visual and narrative quality of films, leading to increased popularity, diversity, and sophistication.
+
+The 1940s saw the rise of animated films, with "Snow White and the Seven Dwarfs" (1937), produced by Walt Disney, considered one of the pioneering animated feature films.
+
+In the 1960s, another marked trend of increased film production emerged. This was driven by factors such as the "New Hollywood" movement, global influential film movements like the French New Wave and Italian Neorealism, and the growing popularity of films from various cultures worldwide.
+
+The 1980s witnessed exponential growth in film production, driven by technological innovations like special effects and widescreen formats. High-budget, blockbuster entertainment became a significant focus, with films like "Star Wars" (1977) and "Jaws" (1975) leading the way.
+
+Starting from the 1990s, particularly in the 2000s and beyond, digital technology began revolutionizing film production and distribution. The rise of the Internet also transformed film promotion and distribution methods, coinciding with a surge in the number of movies produced, technological advancements, and exponential growth in the film industry.
+
+This historical overview showcases the continuous evolution of cinema, shaped by cultural, technological, and global influences, ultimately leading to the diverse and dynamic film industry we know today.
+
+
+[Table of contents](#table-of-contents)
 =======
- A partir de la década de 1990, sobre todo de los 2000 en adelante, la tecnología digital comenzó a revolucionar la producción y distribución de películas. El auge de Internet también cambió la forma en que las películas se promocionaban y se distribuían. Acompañado a ello vino el apogeo de un montón de películas junto a avances tecnológicos y desarrollo exponencial de la industria cinematográfica.
-
 
 ## Deployment
 
-Para finalizar, se realiza la disponibilizacion en un servicio web para que pueda ser consumida por los usuarios 
+To conclude the project, the data and functions were made available through a web service, allowing users to access and consume the information.
+
 + [API](https://ejemplo-joaquinmillan-deploy.onrender.com/docs)
 
-[Tabla de Contenidos](#tabla-de-contenidos)
+[Table of contents](#table-of-contents)
 
 ## Fuente de datos
 
-+ [Dataset](https://drive.google.com/drive/folders/1mfUVyP3jS-UMdKHERknkQ4gaCRCO2e1v): Carpeta con los 2 archivos con datos que requieren ser procesados (movies_dataset.csv y credits.csv), tengan en cuenta que hay datos que estan anidados (un diccionario o una lista como valores en la fila).
-+ [Diccionario de datos](https://docs.google.com/spreadsheets/d/1QkHH5er-74Bpk122tJxy_0D49pJMIwKLurByOfmxzho/edit#gid=0): Diccionario con algunas descripciones de las columnas disponibles en el dataset.
++ [Dataset](https://drive.google.com/drive/folders/1mfUVyP3jS-UMdKHERknkQ4gaCRCO2e1v): The dataset consists of two files that need to be processed: "movies_dataset.csv" and "credits.csv." It's important to note that there is nested data, with some values in rows represented as dictionaries or lists.
++ [Data Dictionary](https://docs.google.com/spreadsheets/d/1QkHH5er-74Bpk122tJxy_0D49pJMIwKLurByOfmxzho/edit#gid=0): Additionally, there is a data dictionary provided, which offers descriptions of some of the columns available in the dataset to help users understand the data's structure and meaning.
 
-
-[Tabla de Contenidos](#tabla-de-contenidos)
+[Table of contents](#table-of-contents)
 
 ## Video Deploy
 + [Video](https://drive.google.com/file/d/1uGitaE-bxqTLBstm2RpZiYsGZ_pokkSk/view?usp=drive_link)
 =======
 # Video Deploy
-+ [Video](https://drive.google.com/file/d/1uGitaE-bxqTLBstm2RpZiYsGZ_pokkSk/view?usp=drive_link) Video con el deploy y la prueba de las funciones.
++ [Video](https://drive.google.com/file/d/1uGitaE-bxqTLBstm2RpZiYsGZ_pokkSk/view?usp=drive_link) Video prooving that the deploy works and testing of fucntions works properly
 
 
-[Tabla de Contenidos](#tabla-de-contenidos)
+[Table of contents](#table-of-contents)
 
-## Stack tecnologico
+## Technology stack
 
-+  Notebook desarrollada en python a traves de Visual Studio Code.
-+  Libreria numpy -- [Numpy](https://numpy.org/) Numerical Pyhton útil para realizar cálculos lógicos y matemáticos sobre cuadros y matrices.
-+  Libreria pandas -- [Pandas](https://pandas.pydata.org/) Pandas es una librería de Python especializada en el manejo y análisis de estructuras de datos
-+  Libreria matplotlib -- [Matplotlib](https://matplotlib.org/) Matplotlib libreria para la visualización de datos.
-+  Libreria seaborn -- [Seaborn](https://seaborn.pydata.org/) Seaborn libreria para la visualización de datos.
-+  Libreria datetime -- [Datetime](https://docs.python.org/es/3/library/datetime.html) Datetime libreria utilizada para la transformación a formato fecha
-+  Libreria missingno -- [Missingno](https://pypi.org/project/missingno/) Miisingno visualización efectiva de datos nulos
-+  Libreria ast -- [ast](https://docs.python.org/3/library/ast.html) El módulo ast ayuda a las aplicaciones de Python a procesar árboles de la gramática de sintaxis abstracta de Python.
-+  Libreria sklearn -- [sklearn](https://scikit-learn.org/stable/) Sklearn libreria utilizada para el modelo de Machine Learning
-+  Libreria plotly [Plotly](https://plotly.com/python/) Plotly libreria para la visualizacion de datos.
-+  FastApi [FastApi](https://fastapi.tiangolo.com/) FastAPI es un web framework para la creacion de APIs con Python 3.7
-+  Render [Render](https://render.com/) Utilzacion de Render para el deploy de la API
++  A Python notebook developed through Visual Studio Code served as the foundation for this project. The following libraries and frameworks were utilized:
 
-[Tabla de Contenidos](#tabla-de-contenidos)
++  Numpy Library -- [Numpy](https://numpy.org/) Numpy, short for Numerical Python, proved invaluable for logical and mathematical calculations on arrays and matrices.
++  Pandas library -- [Pandas](https://pandas.pydata.org/) Pandas, a Python library specialized in data management and analysis, was employed for handling structured data effectively.
++  Matplotlib library -- [Matplotlib](https://matplotlib.org/) Matplotlib, known for its versatility, facilitated data visualization within the project.
++  Seaborn library -- [Seaborn](https://seaborn.pydata.org/) Seaborn, working seamlessly with Matplotlib, further enhanced data visualization capabilities.
++  Datetime library -- [Datetime](https://docs.python.org/es/3/library/datetime.html) The Datetime library was instrumental in transforming date formats, ensuring accurate data handling.
++  Missingno library -- [Missingno](https://pypi.org/project/missingno/) Missingno emerged as a powerful tool for visualizing and addressing missing or null data points within the dataset.
++  Ast library -- [ast](https://docs.python.org/3/library/ast.html) The Ast module assisted Python applications in processing abstract syntax tree (AST) grammar, supporting various data manipulation tasks.
++  Sklearn Library -- [sklearn](https://scikit-learn.org/stable/) Scikit-learn, a widely adopted Python library, was employed for the creation and implementation of machine learning models.
++  Plotly library [Plotly](https://plotly.com/python/) Plotly, offering interactive data visualization capabilities and high-quality graphics, played a crucial role in enhancing data presentation.
++  FastApi [FastApi](https://fastapi.tiangolo.com/) FastAPI, a Python web framework, served as the backbone for swiftly developing and deploying APIs, leveraging Python 3.7.
++  Render [Render](https://render.com/) The project's API deployment was facilitated through Render, enabling online accessibility and showcasing the project to users.
+
+[Table of contents](#table-of-contents)
 
