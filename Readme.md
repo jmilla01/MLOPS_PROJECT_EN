@@ -134,7 +134,7 @@ This historical overview showcases the continuous evolution of cinema, shaped by
 
 
 [Table of contents](#table-of-contents)
-=======
+
 
 ## Deployment
 
