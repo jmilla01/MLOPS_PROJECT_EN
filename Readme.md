@@ -140,7 +140,7 @@ This historical overview showcases the continuous evolution of cinema, shaped by
 
 To conclude the project, the data and functions were made available through a web service, allowing users to access and consume the information.
 
-+ [API](https://ejemplo-joaquinmillan-deploy.onrender.com/docs)
++ [API](https://deploy-tprv.onrender.com/docs#/default/movies_duration_movies_duration__movie__get)
 
 [Table of contents](#table-of-contents)
 
