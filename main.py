@@ -23,19 +23,18 @@ model = pd.read_csv("model.csv")
 
 @app.get('/movies_language/{language}')
 def movies_languages(languages:str):
+
     '''
     Input the language, and It will return the number of movies produced in that language.
-    
-    Example: "en"
     '''
     languages = languages.lower()
     languages = str(languages)
     if languages in movies_language["country_code"].values:
         count = movies['original_language'].value_counts().get(languages, 0)
-        return {'languages':languages, 'cantidad':count}
+        return {'languages':languages, 'quantity':count}
 
     else: 
-        return { "message":"Incorrect language code entered."}    
+        return { "message":"Incorrect language code entered."}   
 
 @app.get('/movies_duration/{movie}')
 def movies_duration(movie:str):
@@ -206,6 +205,4 @@ def recommendation(given_movie:str):
     return {'Recommendation list': 
             recommendations}
 
-    return {'lista recomendada': 
-            recomendadas}
 
